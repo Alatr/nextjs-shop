@@ -1,4 +1,4 @@
-import { Htag } from "../components";
+import { Htag, Button } from "../components";
 
 export default function Home(): JSX.Element {
   return (
@@ -6,6 +6,9 @@ export default function Home(): JSX.Element {
       <Htag lvl={1}>
         <span>123123</span>
       </Htag>
+      <Button appearance="primary">
+        <span>123123</span>
+      </Button>
     </div>
   );
 }
