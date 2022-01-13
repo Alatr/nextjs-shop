@@ -9,6 +9,9 @@ export default function Home(): JSX.Element {
       <Button appearance="primary">
         <span>123123</span>
       </Button>
+      <Button appearance="ghost" arrow="right">
+        <span>123123</span>
+      </Button>
     </div>
   );
 }
