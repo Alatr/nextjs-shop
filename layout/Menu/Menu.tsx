@@ -16,12 +16,42 @@ import {
 } from "@mdi/js";
 import Icon from "@mdi/react";
 import { TOOLBAR_ICON_SIZE } from "../../src/constants";
+import Link from "next/link";
+import styles from "./Menu.module.css";
+import cn from "classnames";
 
-const iconMap = {
-  electronics: mdiTelevisionClassic,
-  jewelery: mdiDiamondStone,
-  "men's clothing": mdiTshirtCrew,
-  "women's clothing": mdiFaceWomanShimmerOutline,
+export interface FirstLevelMenuItem {
+  route: string;
+  name: string;
+  icon: string;
+  id: string;
+}
+
+export const firstLevelMenu = {
+  electronics: {
+    route: "electronics",
+    label: "electronics",
+    id: "electronics",
+    icon: mdiTelevisionClassic,
+  },
+  jewelery: {
+    route: "jewelery",
+    label: "jewelery",
+    id: "jewelery",
+    icon: mdiDiamondStone,
+  },
+  "men's clothing": {
+    route: "mens_clothing",
+    label: "men's clothing",
+    id: "men's clothing",
+    icon: mdiTshirtCrew,
+  },
+  "women's clothing": {
+    route: "women_clothing",
+    label: "women's clothing",
+    id: "women's clothing",
+    icon: mdiFaceWomanShimmerOutline,
+  },
 };
 
 export const Menu = (): JSX.Element => {
@@ -38,12 +68,16 @@ export const Menu = (): JSX.Element => {
       }
     >
       {menu.map((item, i) => (
-        <ListItemButton key={uniqueId()} selected={i === firstCategory}>
-          <ListItemIcon>
-            <Icon size={TOOLBAR_ICON_SIZE} path={iconMap[item]} />
-          </ListItemIcon>
-          <ListItemText primary={item} />
-        </ListItemButton>
+        <Link key={uniqueId()} href={`/${firstLevelMenu[item]?.route}`}>
+          <a
+            className={cn(styles.firstLevel, {
+              [styles.firstLevelActive]: i == firstCategory,
+            })}
+          >
+            <Icon size={TOOLBAR_ICON_SIZE} path={firstLevelMenu[item]?.icon} />
+            <ListItemText primary={item} />
+          </a>
+        </Link>
       ))}
     </List>
   );
