@@ -8,54 +8,18 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import {
-  mdiTelevisionClassic,
-  mdiFaceWomanShimmerOutline,
-  mdiTshirtCrew,
-  mdiDiamondStone,
-} from "@mdi/js";
+
 import Icon from "@mdi/react";
 import { TOOLBAR_ICON_SIZE } from "../../src/constants";
 import Link from "next/link";
 import styles from "./Menu.module.css";
 import cn from "classnames";
-
-export interface FirstLevelMenuItem {
-  route: string;
-  name: string;
-  icon: string;
-  id: string;
-}
-
-export const firstLevelMenu = {
-  electronics: {
-    route: "electronics",
-    label: "electronics",
-    id: "electronics",
-    icon: mdiTelevisionClassic,
-  },
-  jewelery: {
-    route: "jewelery",
-    label: "jewelery",
-    id: "jewelery",
-    icon: mdiDiamondStone,
-  },
-  "men's clothing": {
-    route: "mens_clothing",
-    label: "men's clothing",
-    id: "men's clothing",
-    icon: mdiTshirtCrew,
-  },
-  "women's clothing": {
-    route: "women_clothing",
-    label: "women's clothing",
-    id: "women's clothing",
-    icon: mdiFaceWomanShimmerOutline,
-  },
-};
+import { firstLevelMenu } from "../../helpers/helpers";
 
 export const Menu = (): JSX.Element => {
   const { menu, setMenu, firstCategory } = useContext(AppContext);
+  console.log({ menu });
+
   return (
     <List
       sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
@@ -67,7 +31,7 @@ export const Menu = (): JSX.Element => {
         </ListSubheader>
       }
     >
-      {menu.map((item, i) => (
+      {/* {menu.map((item, i) => (
         <Link key={uniqueId()} href={`/${firstLevelMenu[item]?.route}`}>
           <a
             className={cn(styles.firstLevel, {
@@ -78,7 +42,7 @@ export const Menu = (): JSX.Element => {
             <ListItemText primary={item} />
           </a>
         </Link>
-      ))}
+      ))} */}
     </List>
   );
 };

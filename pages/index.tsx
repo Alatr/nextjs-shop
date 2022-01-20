@@ -9,9 +9,8 @@ import { withLayout } from "../layout/Layout";
 
 function Home({ menu, firstCategory }: HomeProps): JSX.Element {
   const [rating, setRating] = useState<number>(4);
-  console.log({ menu, firstCategory });
 
-  return <div></div>;
+  return <div>home</div>;
 }
 export default withLayout(Home);
 
@@ -20,7 +19,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const urlCategories = `${process.env.NEXT_PUBLIC_DOMAIN}/products/categories`;
 
   const { data: menu } = await axios.get<string[]>(urlCategories);
-  console.log(123, menu);
 
   return {
     props: {
