@@ -7,13 +7,15 @@ import {
   TopLevelCategory,
   TopPageModel,
 } from "../../interfaces/page.interface";
-import { ProductModel } from "../../interfaces/product.interface";
+import { ProductCharacteristic } from "../../interfaces/product.interface";
 import { firstLevelMenu } from "../../helpers/helpers";
 import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
 import { API } from "../../src/api-routes";
 
-function TopPage({ products }: TopPageProps): JSX.Element {
+function Category({ products }: CategoryProps): JSX.Element {
+  console.log("@@@@@@@@@@@", { products });
+
   return (
     <ul>
       {products.map((el) => (
@@ -22,25 +24,21 @@ function TopPage({ products }: TopPageProps): JSX.Element {
     </ul>
   );
 }
-// https://fakestoreapi.com/products/category/jewelery
-// {
-//   id:5,
-//   title:'...',
-//   price:'...',
-//   category:'jewelery',
-//   description:'...',
-//   image:'...'
-// }
-export default withLayout(TopPage);
+
+export default withLayout(Category);
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = Object.keys(firstLevelMenu).map(
+    (category) => `/${firstLevelMenu[category]}`
+  );
+
   return {
-    paths: Object.keys(firstLevelMenu).map((m) => "/" + m),
+    paths,
     fallback: true,
   };
 };
 
-export const getStaticProps: GetStaticProps<TopPageProps> = async ({
+export const getStaticProps: GetStaticProps<CategoryProps> = async ({
   params,
 }: GetStaticPropsContext<ParsedUrlQuery>) => {
   if (!params) {
@@ -49,18 +47,40 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({
     };
   }
 
-  const { data: products } = await axios.get<any[]>(
-    API.getByCategory(params.type)
+  const firstCategory = Object.keys(firstLevelMenu).findIndex(
+    (category) => firstLevelMenu[category] === params.type
   );
-  // console.log("@@@", { menu });
 
-  return {
-    props: {
-      products,
-    },
-  };
+  if (firstCategory === -1) {
+    return {
+      notFound: true,
+    };
+  }
+
+  try {
+    const { data: products } = await axios.get<ProductCharacteristic[]>(
+      API.getByCategory(params.type)
+    );
+
+    const { data: menu } = await axios.get<string[]>(API.allCategories);
+    console.log("@@@@@@@@@@@", { params, menu });
+
+    return {
+      props: {
+        menu,
+        products: [1],
+        firstCategory,
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
 };
 
-interface TopPageProps extends Record<string, unknown> {
-  menu: any[];
+interface CategoryProps extends Record<string, unknown> {
+  menu: string[];
+  products: ProductCharacteristic[];
+  firstCategory: number;
 }

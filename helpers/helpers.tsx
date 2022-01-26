@@ -28,18 +28,18 @@ export const firstLevelMenu = {
     id: "jewelery",
     icon: mdiDiamondStone,
   },
-  // "men's clothing": {
-  //   route: "mens_clothing",
-  //   label: "men's clothing",
-  //   id: "men's clothing",
-  //   icon: mdiTshirtCrew,
-  // },
-  // "women's clothing": {
-  //   route: "women_clothing",
-  //   label: "women's clothing",
-  //   id: "women's clothing",
-  //   icon: mdiFaceWomanShimmerOutline,
-  // },
+  "men's clothing": {
+    route: "mens_clothing",
+    label: "men's clothing",
+    id: "men's clothing",
+    icon: mdiTshirtCrew,
+  },
+  "women's clothing": {
+    route: "women_clothing",
+    label: "women's clothing",
+    id: "women's clothing",
+    icon: mdiFaceWomanShimmerOutline,
+  },
 };
 
 export const priceRu = (price: number): string =>

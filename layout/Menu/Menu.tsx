@@ -1,13 +1,7 @@
 import { useContext, KeyboardEvent, useState } from "react";
 import { AppContext } from "../../context/app.context";
 import { uniqueId } from "lodash";
-import {
-  List,
-  ListSubheader,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import { List, ListSubheader, ListItemText } from "@mui/material";
 
 import Icon from "@mdi/react";
 import { TOOLBAR_ICON_SIZE } from "../../src/constants";
@@ -31,18 +25,21 @@ export const Menu = (): JSX.Element => {
         </ListSubheader>
       }
     >
-      {/* {menu.map((item, i) => (
-        <Link key={uniqueId()} href={`/${firstLevelMenu[item]?.route}`}>
+      {Object.keys(firstLevelMenu).map((category, i) => (
+        <Link key={uniqueId()} href={`/${category}`}>
           <a
             className={cn(styles.firstLevel, {
               [styles.firstLevelActive]: i == firstCategory,
             })}
           >
-            <Icon size={TOOLBAR_ICON_SIZE} path={firstLevelMenu[item]?.icon} />
-            <ListItemText primary={item} />
+            <Icon
+              size={TOOLBAR_ICON_SIZE}
+              path={firstLevelMenu[category]?.icon}
+            />
+            <ListItemText primary={category} />
           </a>
         </Link>
-      ))} */}
+      ))}
     </List>
   );
 };
