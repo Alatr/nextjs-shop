@@ -2,9 +2,8 @@ import axios from "axios";
 import { uniqueId } from "lodash";
 import { GetStaticProps } from "next";
 import { useState } from "react";
-import { Htag, Button, Rating } from "../components";
-import { API } from "../src/api-routes";
-import { MenuItem } from "../interfaces/menu.interface";
+// import { API } from "../src/api-routes";
+// import { MenuItem } from "../interfaces/menu.interface";
 import { withLayout } from "../layout/Layout";
 
 function Home({ menu, firstCategory }: HomeProps): JSX.Element {

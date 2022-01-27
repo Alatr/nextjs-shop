@@ -13,13 +13,11 @@ import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
 import { API } from "../../src/api-routes";
 
-function Category({ products }: CategoryProps): JSX.Element {
-  console.log("@@@@@@@@@@@", { products });
-
+function Category({ products = [] }: CategoryProps): JSX.Element {
   return (
     <ul>
-      {products.map((el) => (
-        <li>{el.title}</li>
+      {products.map((el, i) => (
+        <li key={i}>{el.title}</li>
       ))}
     </ul>
   );
@@ -28,9 +26,7 @@ function Category({ products }: CategoryProps): JSX.Element {
 export default withLayout(Category);
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = Object.keys(firstLevelMenu).map(
-    (category) => `/${firstLevelMenu[category]}`
-  );
+  const paths = Object.keys(firstLevelMenu).map((category) => `/${category}`);
 
   return {
     paths,
@@ -48,7 +44,7 @@ export const getStaticProps: GetStaticProps<CategoryProps> = async ({
   }
 
   const firstCategory = Object.keys(firstLevelMenu).findIndex(
-    (category) => firstLevelMenu[category] === params.type
+    (category) => category === params.type
   );
 
   if (firstCategory === -1) {
@@ -57,26 +53,19 @@ export const getStaticProps: GetStaticProps<CategoryProps> = async ({
     };
   }
 
-  try {
-    const { data: products } = await axios.get<ProductCharacteristic[]>(
-      API.getByCategory(params.type)
-    );
+  const { data: products } = await axios.get<ProductCharacteristic[]>(
+    API.getByCategory(params.type as string)
+  );
 
-    const { data: menu } = await axios.get<string[]>(API.allCategories);
-    console.log("@@@@@@@@@@@", { params, menu });
+  const { data: menu } = await axios.get<string[]>(API.allCategories);
 
-    return {
-      props: {
-        menu,
-        products: [1],
-        firstCategory,
-      },
-    };
-  } catch (error) {
-    return {
-      notFound: true,
-    };
-  }
+  return {
+    props: {
+      menu,
+      products,
+      firstCategory,
+    },
+  };
 };
 
 interface CategoryProps extends Record<string, unknown> {
