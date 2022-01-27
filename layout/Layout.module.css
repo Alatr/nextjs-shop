@@ -65,3 +65,10 @@
 		padding: 15px;
 	}
 }
+
+.productList {
+	display: grid;
+	grid-template-columns: repeat(4, 275px);
+	grid-template-rows: auto;
+	gap: 40px 30px;
+}

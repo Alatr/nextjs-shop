@@ -12,7 +12,6 @@ import { firstLevelMenu } from "../../helpers/helpers";
 
 export const Menu = (): JSX.Element => {
   const { menu, setMenu, firstCategory } = useContext(AppContext);
-  console.log({ menu });
 
   return (
     <List

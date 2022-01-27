@@ -7,19 +7,31 @@ import {
   TopLevelCategory,
   TopPageModel,
 } from "../../interfaces/page.interface";
+import cn from "classnames";
 import { ProductCharacteristic } from "../../interfaces/product.interface";
 import { firstLevelMenu } from "../../helpers/helpers";
 import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
 import { API } from "../../src/api-routes";
+import Product from "../../components/Card/Card";
+import { Grid } from "@mui/material";
+import { Item } from "framer-motion/types/components/Reorder/Item";
+import { Box } from "@mui/system";
+import styles from "../../layout/Layout.module.css";
 
 function Category({ products = [] }: CategoryProps): JSX.Element {
   return (
-    <ul>
-      {products.map((el, i) => (
-        <li key={i}>{el.title}</li>
+    <Box className={cn(styles.productList)} sx={{ width: "100%" }}>
+      {products.map(({ image, description, title, id, price }) => (
+        <Product
+          key={id}
+          image={image}
+          title={title}
+          price={price}
+          description={description}
+        />
       ))}
-    </ul>
+    </Box>
   );
 }
 
