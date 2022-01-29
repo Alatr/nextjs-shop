@@ -4,8 +4,16 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { Box, Button, CardActionArea, CardActions, Chip } from "@mui/material";
+import Link from "next/link";
 
-export default function Product({ image, description, title, price }) {
+export default function Product({
+  image,
+  description,
+  title,
+  price,
+  id,
+  category,
+}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <Box sx={{ paddingTop: 1 }}>
@@ -36,11 +44,12 @@ export default function Product({ image, description, title, price }) {
         >
           {description}
         </Typography>
+        <CardActions>
+          <Link href={`${category}/${id}`}>
+            <a>Learn More</a>
+          </Link>
+        </CardActions>
       </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
   );
 }

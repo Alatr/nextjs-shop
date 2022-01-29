@@ -22,13 +22,15 @@ import styles from "../../layout/Layout.module.css";
 function Category({ products = [] }: CategoryProps): JSX.Element {
   return (
     <Box className={cn(styles.productList)} sx={{ width: "100%" }}>
-      {products.map(({ image, description, title, id, price }) => (
+      {products.map(({ image, description, title, id, price, category }) => (
         <Product
           key={id}
           image={image}
           title={title}
           price={price}
           description={description}
+          id={id}
+          category={category}
         />
       ))}
     </Box>

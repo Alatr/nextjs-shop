@@ -4,6 +4,7 @@ const makeURL = (path: string) =>
 export const API = {
   allCategories: `${process.env.NEXT_PUBLIC_DOMAIN}/products/categories`,
   allProducts: `${process.env.NEXT_PUBLIC_DOMAIN}/products`,
+  getProduct: (productId: string) => makeURL(`/products/${productId}`),
   getByCategory: (category: string) =>
     makeURL(`/products/category/${category}`),
 };
