@@ -2,11 +2,6 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
 import { withLayout } from "../../layout/Layout";
 import axios from "axios";
-import { MenuItem } from "../../interfaces/menu.interface";
-import {
-  TopLevelCategory,
-  TopPageModel,
-} from "../../interfaces/page.interface";
 import cn from "classnames";
 import { ProductCharacteristic } from "../../interfaces/product.interface";
 import { firstLevelMenu } from "../../helpers/helpers";
@@ -82,8 +77,9 @@ export const getStaticProps: GetStaticProps<CategoryProps> = async ({
   };
 };
 
+// TODO remove menu
 interface CategoryProps extends Record<string, unknown> {
   menu: string[];
-  products: ProductCharacteristic[];
   firstCategory: number;
+  products: ProductCharacteristic[];
 }

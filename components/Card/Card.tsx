@@ -33,6 +33,7 @@ export default function Product({
         <Typography
           variant="body2"
           sx={{
+            marginBottom: 1,
             overflow: "hidden",
             textOverflow: "ellipsis",
             display: "-webkit-box",
@@ -44,11 +45,9 @@ export default function Product({
         >
           {description}
         </Typography>
-        <CardActions>
-          <Link href={`${category}/${id}`}>
-            <a>Learn More</a>
-          </Link>
-        </CardActions>
+        <Link href={`${category}/${id}`}>
+          <a>Learn More</a>
+        </Link>
       </CardContent>
     </Card>
   );

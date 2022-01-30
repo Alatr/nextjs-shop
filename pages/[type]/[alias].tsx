@@ -20,21 +20,19 @@ import {
   Chip,
   Rating,
 } from "@mui/material";
+import { firstLevelMenu } from "../../helpers/helpers";
 
-function TopPage({
-  firstCategory,
-  page,
-  product: {
+function TopPage({ product }: TopPageProps): JSX.Element {
+  if (!product) {
+    return <span>not found</span>;
+  }
+  const {
     image,
     description,
     title,
     price,
     rating: { rate },
-  },
-}: TopPageProps): JSX.Element {
-  // if (!page || !products) {
-  //   return <Error404 />;
-  // }
+  } = product;
 
   return (
     <>
@@ -104,6 +102,16 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({
     };
   }
 
+  const firstCategory = Object.keys(firstLevelMenu).findIndex(
+    (category) => category === params.type
+  );
+
+  if (firstCategory === -1) {
+    return {
+      notFound: true,
+    };
+  }
+
   try {
     const { data: product } = await axios.get<ProductCharacteristic>(
       API.getProduct(params.alias as string)
@@ -111,6 +119,8 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({
 
     return {
       props: {
+        menu: [],
+        firstCategory,
         product,
       },
     };
@@ -122,8 +132,7 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({
 };
 
 interface TopPageProps extends Record<string, unknown> {
-  // menu: MenuItem[];
-  // firstCategory: TopLevelCategory;
-  // page: TopPageModel;
+  menu: string[];
+  firstCategory: number;
   product: ProductCharacteristic;
 }
