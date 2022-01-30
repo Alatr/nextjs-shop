@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
-import React from "react";
+import React, { useEffect, useReducer } from "react";
 import { withLayout } from "../../layout/Layout";
 import axios from "axios";
 import cn from "classnames";
@@ -13,22 +13,50 @@ import { Grid } from "@mui/material";
 import { Item } from "framer-motion/types/components/Reorder/Item";
 import { Box } from "@mui/system";
 import styles from "../../layout/Layout.module.css";
+import { Sort, SortEnum, sortReducer } from "../../components/Sort/Sort";
+import { useReducedMotion } from "framer-motion";
 
 function Category({ products = [] }: CategoryProps): JSX.Element {
+  const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(
+    sortReducer,
+    { products, sort: SortEnum.Rating }
+  );
+
+  const setSort = (sort: SortEnum) => {
+    dispatchSort({ type: sort });
+  };
+
+  useEffect(() => {
+    dispatchSort({ type: "reset", initialState: products });
+  }, [products]);
   return (
-    <Box className={cn(styles.productList)} sx={{ width: "100%" }}>
-      {products.map(({ image, description, title, id, price, category }) => (
-        <Product
-          key={id}
-          image={image}
-          title={title}
-          price={price}
-          description={description}
-          id={id}
-          category={category}
-        />
-      ))}
-    </Box>
+    <>
+      <Sort setSort={setSort} sort={sort} />
+      <Box className={cn(styles.productList)} sx={{ width: "100%" }}>
+        {sortedProducts.map(
+          ({
+            image,
+            description,
+            title,
+            id,
+            price,
+            category,
+            rating: { rate },
+          }) => (
+            <Product
+              key={id}
+              image={image}
+              title={title}
+              price={price}
+              description={description}
+              id={id}
+              category={category}
+              rate={rate}
+            />
+          )
+        )}
+      </Box>
+    </>
   );
 }
 

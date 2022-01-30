@@ -1,0 +1,5 @@
+.wrapper {
+	display: grid;
+	justify-content: end;
+	margin-bottom: 25px;
+}

@@ -3,7 +3,14 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Box, Button, CardActionArea, CardActions, Chip } from "@mui/material";
+import {
+  Box,
+  Button,
+  CardActionArea,
+  CardActions,
+  Chip,
+  Rating,
+} from "@mui/material";
 import Link from "next/link";
 
 export default function Product({
@@ -13,6 +20,7 @@ export default function Product({
   price,
   id,
   category,
+  rate,
 }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -29,7 +37,21 @@ export default function Product({
         <Typography noWrap={true} gutterBottom variant="h5" component="div">
           {title}
         </Typography>
-        <Chip label={`${price} $`} sx={{ marginBottom: 1 }} />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Chip label={`${price} $`} sx={{ marginBottom: 1 }} />
+          <Rating
+            name="read-only"
+            sx={{ marginBottom: 1 }}
+            value={rate}
+            readOnly
+          />
+        </Box>
         <Typography
           variant="body2"
           sx={{
