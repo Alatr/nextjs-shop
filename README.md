@@ -1,5 +1,7 @@
 # Project with nextJS
 
+demo project for cheking ability and advantages nextjs
+
 ## Getting Started
 
 First, run the development server:
