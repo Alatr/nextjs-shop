@@ -41,6 +41,7 @@ function Category({ products = [] }: CategoryProps): JSX.Element {
             rating: { rate },
           }) => (
             <Product
+              layout={true}
               key={id}
               image={image}
               title={title}
