@@ -12,6 +12,7 @@ import {
   Rating,
 } from "@mui/material";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Product({
   image,
@@ -24,14 +25,16 @@ export default function Product({
 }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <Box sx={{ paddingTop: 1 }}>
-        <CardMedia
-          component="img"
-          sx={{ objectFit: "contain" }}
-          height="160"
-          image={image}
-          alt={title}
-        />
+      <Box
+        sx={{
+          paddingTop: 1,
+          maxWidth: 345,
+          height: 160,
+          position: "relative",
+          margin: 2,
+        }}
+      >
+        <Image layout={"fill"} src={image} alt={title} />
       </Box>
       <CardContent>
         <Typography noWrap={true} gutterBottom variant="h5" component="div">

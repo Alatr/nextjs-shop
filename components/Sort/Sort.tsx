@@ -68,7 +68,6 @@ export const Sort = ({
     newSortValue: SortEnum
   ) => {
     setSort(newSortValue);
-    console.log({ newSortValue }, SortEnum);
   };
   return (
     <div className={styles.wrapper} {...props}>
