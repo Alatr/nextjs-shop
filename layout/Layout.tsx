@@ -1,17 +1,9 @@
+import { ReactNode } from "react";
 import styles from "./Layout.module.css";
-import cn from "classnames";
 import { Header } from "./Header/Header";
-import React, {
-  FunctionComponent,
-  useState,
-  KeyboardEvent,
-  useRef,
-} from "react";
+import React, { FunctionComponent } from "react";
 import { Sidebar } from "./Sidebar/Sidebar";
 import { Footer } from "./Footer/Footer";
-// import { AppContextProvider, IAppContext } from "../context/app.context";
-// import { Up } from "../components";
-import { ReactNode } from "react";
 import { AppContextProvider, IAppContext } from "../context/app.context";
 
 interface LayoutProps {

@@ -1,17 +1,17 @@
-import { useContext, KeyboardEvent, useState } from "react";
-import { AppContext } from "../../context/app.context";
-import { uniqueId } from "lodash";
-import { List, ListSubheader, ListItemText } from "@mui/material";
-
 import Icon from "@mdi/react";
-import { TOOLBAR_ICON_SIZE } from "../../src/constants";
+import { List, ListSubheader, ListItemText } from "@mui/material";
+import { useContext } from "react";
+import { uniqueId } from "lodash";
 import Link from "next/link";
-import styles from "./Menu.module.css";
 import cn from "classnames";
+
+import { TOOLBAR_ICON_SIZE } from "../../src/constants";
+import styles from "./Menu.module.css";
 import { firstLevelMenu } from "../../helpers/helpers";
+import { AppContext } from "../../context/app.context";
 
 export const Menu = (): JSX.Element => {
-  const { menu, setMenu, firstCategory } = useContext(AppContext);
+  const { firstCategory } = useContext(AppContext);
 
   return (
     <List

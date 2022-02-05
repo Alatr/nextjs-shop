@@ -1,4 +1,3 @@
-import styles from "./TopPageComponent.module.css";
 import {
   Card,
   Box,

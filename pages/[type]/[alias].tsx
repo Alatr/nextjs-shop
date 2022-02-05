@@ -1,25 +1,12 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
-import { withLayout } from "../../layout/Layout";
 import axios from "axios";
-
-// import { ProductModel } from "../../interfaces/product.interface";
-// import { TopPageComponent } from "../../page-components";
-// import { API } from "../../helpers/api";
-import Head from "next/head";
-// import { Error404 } from "../404";
 import { ParsedUrlQuery } from "querystring";
+// import Head from "next/head";
+
+import { withLayout } from "../../layout/Layout";
 import { ProductCharacteristic } from "../../interfaces/product.interface";
 import { API } from "../../src/api-routes";
-import {
-  Card,
-  Box,
-  CardMedia,
-  CardContent,
-  Typography,
-  Chip,
-  Rating,
-} from "@mui/material";
 import { firstLevelMenu } from "../../helpers/helpers";
 import { TopPageComponent } from "../../page-components/TopPageComponent/TopPageComponent";
 

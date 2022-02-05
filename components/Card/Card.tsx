@@ -1,18 +1,20 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import {
-  Box,
-  Button,
-  CardActionArea,
-  CardActions,
-  Chip,
-  Rating,
-} from "@mui/material";
+import { Box, Chip, Rating } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
+
+const overflowTextStyle = {
+  marginBottom: 1,
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  display: "-webkit-box",
+  WebkitLineClamp: "4",
+  lineClamp: "4",
+  WebkitBoxOrient: "vertical",
+};
 
 export default function Product({
   image,
@@ -57,15 +59,7 @@ export default function Product({
         </Box>
         <Typography
           variant="body2"
-          sx={{
-            marginBottom: 1,
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            display: "-webkit-box",
-            WebkitLineClamp: "4",
-            lineClamp: "4",
-            WebkitBoxOrient: "vertical",
-          }}
+          sx={overflowTextStyle}
           color="text.secondary"
         >
           {description}

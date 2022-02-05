@@ -1,12 +1,9 @@
-import styles from "./Sort.module.css";
-import SortIcon from "./sort.svg";
-import cn from "classnames";
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { Tabs, Tab } from "@mui/material";
-import { firstLevelMenu } from "../../helpers/helpers";
-import { TOOLBAR_ICON_SIZE } from "../../src/constants";
 import Icon from "@mdi/react";
 import { mdiCurrencyUsd, mdiStarCheckOutline } from "@mdi/js";
+import styles from "./Sort.module.css";
+import { TOOLBAR_ICON_SIZE } from "../../src/constants";
 import { ProductCharacteristic } from "../../interfaces/product.interface";
 
 export interface SortProps

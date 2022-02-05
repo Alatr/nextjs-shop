@@ -1,20 +1,17 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React, { useEffect, useReducer } from "react";
-import { withLayout } from "../../layout/Layout";
 import axios from "axios";
 import cn from "classnames";
+import { ParsedUrlQuery } from "querystring";
+import { Box } from "@mui/system";
+
+import { withLayout } from "../../layout/Layout";
 import { ProductCharacteristic } from "../../interfaces/product.interface";
 import { firstLevelMenu } from "../../helpers/helpers";
-import Head from "next/head";
-import { ParsedUrlQuery } from "querystring";
+import styles from "../../layout/Layout.module.css";
 import { API } from "../../src/api-routes";
 import Product from "../../components/Card/Card";
-import { Grid } from "@mui/material";
-import { Item } from "framer-motion/types/components/Reorder/Item";
-import { Box } from "@mui/system";
-import styles from "../../layout/Layout.module.css";
 import { Sort, SortEnum, sortReducer } from "../../components/Sort/Sort";
-import { useReducedMotion } from "framer-motion";
 
 function Category({ products = [] }: CategoryProps): JSX.Element {
   const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(
